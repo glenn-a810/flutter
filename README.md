@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-# flutter
-플터디
-=======
-# contact
-
-A new Flutter project.
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
