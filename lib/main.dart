@@ -10,8 +10,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Center(
-        child: Image.asset('assets/ogu.gif')
+      home: Scaffold(
+        appBar: AppBar(title: const Text('오구'),),
+        body: const Text('승리의 포오즈'),
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Icon(Icons.phone),
+                Icon(Icons.message),
+                Icon(Icons.contact_page)
+              ],
+            ),
+          ),
+        )
       )
     );
   }
