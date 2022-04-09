@@ -11,22 +11,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('오구'),),
-        body: const Text('승리의 포오즈'),
-        bottomNavigationBar: BottomAppBar(
+        appBar: AppBar(title: const Text('오구월드'),),
+        body: Align(
+          alignment: Alignment.centerLeft,
           child: Container(
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Icon(Icons.phone),
-                Icon(Icons.message),
-                Icon(Icons.contact_page)
-              ],
-            ),
+            width: double.infinity, height: 200, color: Colors.blue,
           ),
-        )
-      )
+        ),
+      ),
     );
   }
 }
