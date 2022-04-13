@@ -13,26 +13,40 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(),
         body: ListView(
-          children: [
-            Row(
-              children: [
-                Icon(Icons.account_circle,size: 30,),
-                Text('루이'),
-              ],
+          children: const [
+            ListTile(
+              leading: Icon(Icons.account_circle, size: 40,),
+              title: Text('루이'),
             ),
-            Row(
-              children: [
-                Icon(Icons.account_circle,size: 30,),
-                Text('오드'),
-              ],
+            ListTile(
+              leading: Icon(Icons.account_circle, size: 40,),
+              title: Text('오드'),
             ),
-            Row(
-              children: [
-                Icon(Icons.account_circle,size: 30,),
-                Text('하루'),
-              ],
+            ListTile(
+              leading: Icon(Icons.account_circle, size: 40,),
+              title: Text('하루'),
             ),
           ],
+          // children: [
+          //   Row(
+          //     children: const [
+          //       Icon(Icons.account_circle,size: 30,),
+          //       Text('루이'),
+          //     ],
+          //   ),
+          //   Row(
+          //     children: const [
+          //       Icon(Icons.account_circle,size: 30,),
+          //       Text('오드'),
+          //     ],
+          //   ),
+          //   Row(
+          //     children: const [
+          //       Icon(Icons.account_circle,size: 30,),
+          //       Text('하루'),
+          //     ],
+          //   ),
+          // ],
         ),
         bottomNavigationBar: const BottomNav(),
       ),
