@@ -38,14 +38,14 @@ class _MyAppState extends State<MyApp> {
               // leading: const Icon(Icons.account_circle, size: 40,),
               leading: Text(like[i].toString()),
               title: Text(name[i]),
-              trailing: RaisedButton(
-                color: Colors.blue,
+              trailing: ElevatedButton(
+                // color: Colors.blue,
                 onPressed: (){
                   setState(() {
                     like[i]++;
                   });
                 },
-                child: Text('좋아요',style: TextStyle(color: Colors.white),),
+                child: const Text('좋아요',style: TextStyle(color: Colors.white),),
               ),
             );
           },
