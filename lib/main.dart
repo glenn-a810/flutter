@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    const MaterialApp(
+      home: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -18,16 +22,25 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Text(a.toString()),
-          onPressed: (){
-            // a++;
-            setState(() {
-              a++;
-            });
-          },
+    return Scaffold(
+        floatingActionButton: Builder(
+          builder: (context) {
+            return FloatingActionButton(
+              child: const Text('+'),
+              onPressed: (){
+                // print(context.findAncestorWidgetOfExactType<MaterialApp>());
+                showDialog(context: context, builder: (context){
+                  return const Dialog(
+                    child: Text('Dialog 활성'),
+                  );
+                });
+                // a++;
+                // setState(() {
+                //   a++;
+                // });
+              },
+            );
+          }
         ),
         appBar: AppBar(title: const Text('오구월드'),),
         body: ListView.builder(
@@ -85,8 +98,7 @@ class _MyAppState extends State<MyApp> {
           // ],
         ),
         bottomNavigationBar: const BottomNav(),
-      ),
-    );
+      );
   }
 }
 
