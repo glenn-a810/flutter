@@ -29,11 +29,34 @@ class _MyAppState extends State<MyApp> {
               child: const Text('+'),
               onPressed: (){
                 // print(context.findAncestorWidgetOfExactType<MaterialApp>());
-                showDialog(context: context, builder: (context){
-                  return const Dialog(
-                    child: Text('Dialog 활성'),
-                  );
-                });
+                showDialog(
+                  context: context,
+                  builder: (context){
+                    return AlertDialog(
+                      title: const Text('Contact'),
+                      content: TextFormField(
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(),
+                          labelText: 'Enter your name',
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          child: const Text('Cancel'),
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('OK'),
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ],
+                    );
+                  }
+                );
                 // a++;
                 // setState(() {
                 //   a++;
