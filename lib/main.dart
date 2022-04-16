@@ -32,35 +32,9 @@ class _MyAppState extends State<MyApp> {
                 showDialog(
                   context: context,
                   builder: (context){
-                    return AlertDialog(
-                      title: const Text('Contact'),
-                      content: TextFormField(
-                        decoration: const InputDecoration(
-                          border: UnderlineInputBorder(),
-                          labelText: 'Enter your name',
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                          child: const Text('Cancel'),
-                          onPressed: (){
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: const Text('OK'),
-                          onPressed: (){
-                            Navigator.of(context).pop();
-                          },
-                        )
-                      ],
-                    );
+                    return DialogUI(catState : a);
                   }
                 );
-                // a++;
-                // setState(() {
-                //   a++;
-                // });
               },
             );
           }
@@ -85,40 +59,6 @@ class _MyAppState extends State<MyApp> {
               ),
             );
           },
-          // children: const [
-          //   ListTile(
-          //     leading: Icon(Icons.account_circle, size: 40,),
-          //     title: Text('루이'),
-          //   ),
-          //   ListTile(
-          //     leading: Icon(Icons.account_circle, size: 40,),
-          //     title: Text('오드'),
-          //   ),
-          //   ListTile(
-          //     leading: Icon(Icons.account_circle, size: 40,),
-          //     title: Text('하루'),
-          //   ),
-          // ],
-          // children: [
-          //   Row(
-          //     children: const [
-          //       Icon(Icons.account_circle,size: 30,),
-          //       Text('루이'),
-          //     ],
-          //   ),
-          //   Row(
-          //     children: const [
-          //       Icon(Icons.account_circle,size: 30,),
-          //       Text('오드'),
-          //     ],
-          //   ),
-          //   Row(
-          //     children: const [
-          //       Icon(Icons.account_circle,size: 30,),
-          //       Text('하루'),
-          //     ],
-          //   ),
-          // ],
         ),
         bottomNavigationBar: const BottomNav(),
       );
@@ -142,4 +82,38 @@ class BottomNav extends StatelessWidget {
     );
   }
 }
+
+class DialogUI extends StatelessWidget {
+  const DialogUI({Key? key, this.catState}) : super(key: key);
+
+  final catState;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Total cats : ' + catState.toString()),
+      content: TextFormField(
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+          labelText: 'add Cat',
+        ),
+      ),
+      actions: [
+        TextButton(
+          child: const Text('Cancel'),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
+        TextButton(
+          child: const Text('OK'),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        )
+      ],
+    );
+  }
+}
+
 
