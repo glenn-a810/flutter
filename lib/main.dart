@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var a = 1; // StatefulWidget으로 바꾸면 state로 인식
+  var a = 3; // StatefulWidget으로 바꾸면 state로 인식
   var name = ['루이','오드','하루'];
   var like = [0,0,0];
 
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                 showDialog(
                   context: context,
                   builder: (context){
-                    return DialogUI(catState : a);
+                    return DialogUI(catState : like);
                   }
                 );
               },
@@ -91,7 +91,7 @@ class DialogUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Total cats : ' + catState.toString()),
+      title: Text('Total cats : ' + catState[0].toString()),
       content: TextFormField(
         decoration: const InputDecoration(
           border: UnderlineInputBorder(),
