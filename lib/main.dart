@@ -20,9 +20,9 @@ class _MyAppState extends State<MyApp> {
   var name = ['루이','오드','하루'];
   var like = [0,0,0];
 
-  addCat() {
+  addCat(inputData) {
     setState(() {
-      total++;
+      name = [...inputData];
     });
   }
 
@@ -100,7 +100,7 @@ class DialogUI extends StatelessWidget {
     return AlertDialog(
       title: const Text('New cat'),
       content: TextFormField(
-        // controller: inputData,
+        controller: inputData,
         // onChanged: (){},
         decoration: const InputDecoration(
           border: UnderlineInputBorder(),
@@ -117,7 +117,7 @@ class DialogUI extends StatelessWidget {
         TextButton(
           child: const Text('OK'),
           onPressed: (){
-            addCat();
+            addCat(inputData);
             Navigator.pop(context);
           },
         )
