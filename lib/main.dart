@@ -16,9 +16,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var a = 3; // StatefulWidget으로 바꾸면 state로 인식
+  var total = 3; // StatefulWidget으로 바꾸면 state로 인식
   var name = ['루이','오드','하루'];
   var like = [0,0,0];
+
+  addCat() {
+    setState(() {
+      total++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +38,14 @@ class _MyAppState extends State<MyApp> {
                 showDialog(
                   context: context,
                   builder: (context){
-                    return DialogUI(catState : like);
+                    return DialogUI(addCat : addCat);
                   }
                 );
               },
             );
           }
         ),
-        appBar: AppBar(title: const Text('오구월드'),),
+        appBar: AppBar(title: Text('오구월드 ' + total.toString()),),
         body: ListView.builder(
           itemCount: 3, // 몇 번 반복할지
           itemBuilder: (context,i){ // 첫번째 파라메터 context, 두번째 파라메터 반복때마다 증가되는 정수 i++같은거
@@ -84,15 +90,18 @@ class BottomNav extends StatelessWidget {
 }
 
 class DialogUI extends StatelessWidget {
-  const DialogUI({Key? key, this.catState}) : super(key: key);
+  DialogUI({Key? key, this.addCat}) : super(key: key);
 
-  final catState;
+  final addCat;
+  var inputData = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Total cats : ' + catState[0].toString()),
+      title: const Text('New cat'),
       content: TextFormField(
+        // controller: inputData,
+        // onChanged: (){},
         decoration: const InputDecoration(
           border: UnderlineInputBorder(),
           labelText: 'add Cat',
@@ -108,6 +117,7 @@ class DialogUI extends StatelessWidget {
         TextButton(
           child: const Text('OK'),
           onPressed: (){
+            addCat();
             Navigator.pop(context);
           },
         )
