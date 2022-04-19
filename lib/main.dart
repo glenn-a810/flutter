@@ -46,14 +46,14 @@ class _MyAppState extends State<MyApp> {
             );
           }
         ),
-        appBar: AppBar(title: Text('오구월드 ' + total.toString()),),
+        appBar: AppBar(title: const Text('오구월드'),),
         body: ListView.builder(
           itemCount: name.length, // 몇 번 반복할지
           itemBuilder: (context,i){ // 첫번째 파라메터 context, 두번째 파라메터 반복때마다 증가되는 정수 i++같은거
             // print(i); // 콘솔창에 나타남
             return ListTile(
-              // leading: const Icon(Icons.account_circle, size: 40,),
-              leading: Text(like[i].toString()),
+              leading: const Icon(Icons.account_circle, size: 40,),
+              // leading: Text(like[i].toString()),
               title: Text(name[i]),
               trailing: ElevatedButton(
                 // color: Colors.blue,
@@ -119,7 +119,7 @@ class DialogUI extends StatelessWidget {
           child: const Text('OK'),
           onPressed: (){
             addCat(inputData.text);
-            // Navigator.pop(context);
+            Navigator.pop(context);
           },
         )
       ],
