@@ -59,10 +59,11 @@ class _MyAppState extends State<MyApp> {
                 // color: Colors.blue,
                 onPressed: (){
                   setState(() {
-                    like[i]++;
+                    // like[i]++;
+                    name.remove(name[i]);
                   });
                 },
-                child: const Text('좋아요',style: TextStyle(color: Colors.white),),
+                child: const Text('삭제',style: TextStyle(color: Colors.white),),
               ),
             );
           },
