@@ -22,7 +22,8 @@ class _MyAppState extends State<MyApp> {
 
   addCat(inputData) {
     setState(() {
-      name = [...inputData];
+      // name = [...inputData];
+      name.add(inputData);
     });
   }
 
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
         ),
         appBar: AppBar(title: Text('오구월드 ' + total.toString()),),
         body: ListView.builder(
-          itemCount: 3, // 몇 번 반복할지
+          itemCount: name.length, // 몇 번 반복할지
           itemBuilder: (context,i){ // 첫번째 파라메터 context, 두번째 파라메터 반복때마다 증가되는 정수 i++같은거
             // print(i); // 콘솔창에 나타남
             return ListTile(
@@ -117,8 +118,8 @@ class DialogUI extends StatelessWidget {
         TextButton(
           child: const Text('OK'),
           onPressed: (){
-            addCat(inputData);
-            Navigator.pop(context);
+            addCat(inputData.text);
+            // Navigator.pop(context);
           },
         )
       ],
