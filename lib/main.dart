@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(
@@ -16,6 +17,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  getPermission() async {
+    var status = await Permission.contacts.status;
+    if(status.isGranted) {
+      print('허락됨');
+    } else if (status.isDenied) {
+      print('거절됨');
+      Permission.contacts.request();
+      openAppSettings();
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getPermission();
+  }
+
   var total = 3; // StatefulWidget으로 바꾸면 state로 인식
   var name = ['루이','오드','하루'];
   var like = [0,0,0];
@@ -46,7 +66,14 @@ class _MyAppState extends State<MyApp> {
             );
           }
         ),
-        appBar: AppBar(title: const Text('오구월드'),),
+        appBar: AppBar(
+          title: const Text('오구월드'),
+          actions: [
+            IconButton(
+                onPressed: () { getPermission(); },
+                icon: const Icon(Icons.contacts))
+          ],
+        ),
         body: ListView.builder(
           itemCount: name.length, // 몇 번 반복할지
           itemBuilder: (context,i){ // 첫번째 파라메터 context, 두번째 파라메터 반복때마다 증가되는 정수 i++같은거
@@ -63,7 +90,7 @@ class _MyAppState extends State<MyApp> {
                     name.remove(name[i]);
                   });
                 },
-                child: const Text('삭제',style: TextStyle(color: Colors.white),),
+                child: const Text('삭제 ',style: TextStyle(color: Colors.white),),
               ),
             );
           },
