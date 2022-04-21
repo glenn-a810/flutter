@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:contacts_service/contacts_service.dart';
 
 void main() {
   runApp(
@@ -22,6 +23,14 @@ class _MyAppState extends State<MyApp> {
     var status = await Permission.contacts.status;
     if(status.isGranted) {
       print('허락됨');
+      var contacts = await ContactsService.getContacts();
+      // print(contacts);
+      // var newCat = Contact();
+      // newCat.givenName = '로켓';
+      // await ContactsService.addContact(newCat);
+      setState(() {
+        name = contacts;
+      });
     } else if (status.isDenied) {
       print('거절됨');
       Permission.contacts.request();
@@ -37,7 +46,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   var total = 3; // StatefulWidget으로 바꾸면 state로 인식
-  var name = ['루이','오드','하루'];
+  // var name = ['루이','오드','하루'];
+  var name = []; // dynamic type
+  // List<Contact> name = []; // 타입 맞추는 경우
   var like = [0,0,0];
 
   addCat(inputData) {
@@ -81,12 +92,13 @@ class _MyAppState extends State<MyApp> {
             return ListTile(
               leading: const Icon(Icons.account_circle, size: 40,),
               // leading: Text(like[i].toString()),
-              title: Text(name[i]),
+              title: Text(name[i].givenName),
               trailing: ElevatedButton(
                 // color: Colors.blue,
                 onPressed: (){
-                  setState(() {
+                  setState(() async {
                     // like[i]++;
+                    // await ContactsService.deleteContact(name[i]);
                     name.remove(name[i]);
                   });
                 },
@@ -145,8 +157,11 @@ class DialogUI extends StatelessWidget {
         ),
         TextButton(
           child: const Text('OK'),
-          onPressed: (){
-            addCat(inputData.text);
+          onPressed: () async {
+            var newCat = Contact();
+            newCat.givenName = inputData.text;
+            await ContactsService.addContact(newCat);
+            addCat(newCat);
             Navigator.pop(context);
           },
         )
