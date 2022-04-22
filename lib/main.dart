@@ -45,11 +45,11 @@ class _MyAppState extends State<MyApp> {
     getPermission();
   }
 
-  var total = 3; // StatefulWidget으로 바꾸면 state로 인식
+  int total = 3; // StatefulWidget으로 바꾸면 state로 인식
   // var name = ['루이','오드','하루'];
-  var name = []; // dynamic type
+  List<Contact> name = []; // dynamic type
   // List<Contact> name = []; // 타입 맞추는 경우
-  var like = [0,0,0];
+ List<int> like = [0,0,0];
 
   addCat(inputData) {
     setState(() {
@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
             return ListTile(
               leading: const Icon(Icons.account_circle, size: 40,),
               // leading: Text(like[i].toString()),
-              title: Text(name[i].givenName),
+              title: Text(name[i].givenName ?? '무명고양이'),
               trailing: ElevatedButton(
                 // color: Colors.blue,
                 onPressed: (){
